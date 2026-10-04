@@ -32,7 +32,7 @@ async def f(request: Request):
     try:
         return templates.TemplateResponse(
             request=request,
-            name="v1/page/index.html",
+            name="page/v1/index.html",
             context={
                 "x": "",
                 # "navbar_menu": await navbar_menu(token=token),

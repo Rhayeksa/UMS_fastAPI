@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block apps %}
+{% extends "base.html" %}
+
+{% block apps %}
 <div class="container pt-4">
   <div class="position-absolute top-50 start-50 translate-middle">
     <div class="card" style="max-width: 380px; min-width: 300px">
@@ -63,7 +65,9 @@
     </div>
   </div>
 </div>
-{% endblock %} {% block js %}
+{% endblock %}
+
+{% block js %}
 <script>
   const btn_submit = document.getElementById("btn-submit");
   const spinner = document.getElementById("spinner-submit");

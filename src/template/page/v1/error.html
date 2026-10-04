@@ -1,7 +1,7 @@
-{% extends "v1/base.html" %}
+{% extends "base.html" %}
 {% block apps %}
 {% if err["code"] == 429 and request.cookies.get("x-access-token") %}
-  {%include "v1/components/navbar.html"%}
+  {%include "components/v1/navbar.html"%}
 {% endif %}
 <div class="container pt-4">
   <div class="position-absolute top-50 start-50 translate-middle">

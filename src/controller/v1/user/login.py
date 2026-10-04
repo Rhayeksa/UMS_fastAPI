@@ -2,9 +2,9 @@ import json
 
 from fastapi import APIRouter, Body, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
-from src.api.v1.user.util.login import f as login
 
 from src.config import templates
+from src.logic.v1.user.login import f as login
 from src.util.v1.rate_limiter import limiter
 from src.util.v1.response import f as response
 from src.util.v1.verify_token import f as verify_token
@@ -22,11 +22,11 @@ async def f(request: Request):
     token = request.cookies.get("x-access-token")
     payload = verify_token(token=token)
 
-    if token and not isinstance(payload, str):
-        return RedirectResponse(url="/")
+    # if token and not isinstance(payload, str):
+    #     return RedirectResponse(url="/")
 
     return templates.TemplateResponse(
-        name="pages/user/login.html", context={"request": request}
+        request=request, name="page/v1/user/login.html", context={}
     )
 
 

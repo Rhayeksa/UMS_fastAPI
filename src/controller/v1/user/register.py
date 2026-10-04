@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 
-from src.configs import templates
-from src.util.rate_limiter import limiter
-from src.util.verify_token import f as verify_token
+from src.config import templates
+from src.util.v1.rate_limiter import limiter
+from src.util.v1.verify_token import f as verify_token
 
 router = APIRouter()
 
@@ -22,6 +22,5 @@ async def f(request: Request):
         return RedirectResponse(url="/")
 
     return templates.TemplateResponse(
-        name="pages/user/register.html",
-        context={"request": request}
+        request=request, name="page/v1/user/register.html", context={}
     )
