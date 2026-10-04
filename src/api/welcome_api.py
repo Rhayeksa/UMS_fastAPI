@@ -2,7 +2,7 @@ import json
 
 from fastapi import APIRouter
 
-from src.v1.util.response import f as response
+from src.util.v1.response import f as response
 
 router = APIRouter()
 

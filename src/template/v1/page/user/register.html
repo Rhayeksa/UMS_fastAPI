@@ -1,0 +1,148 @@
+{% extends "base.html" %} {% block apps %}
+<div class="container pt-4">
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="card" style="max-width: 480px; min-width: 300px">
+      <h5 class="card-header text-bg-primary text-center">Registration</h5>
+      <div class="card-body">
+        <form
+          id="form-register"
+          hx-post="/api/v1/user/register"
+          hx-encoding="json"
+          hx-ext="json-enc"
+          hx-swap="none"
+          hx-on::before-request="handleFormBefore(event)"
+          hx-on::after-request="handleFormAfter(event)"
+          hx-vals="js:{gender: document.getElementById('gender').value || null}"
+          class="row g-3"
+        >
+          <div class="col-12">
+            <span class="h3 text-decoration-underline fst-italic">Profile</span>
+          </div>
+          <div class="col-12">
+            <label for="name" class="form-label">
+              name <span class="text-danger">*</span>
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="age" class="form-label">age</label>
+            <input
+              id="age"
+              name="age"
+              type="number"
+              min="1"
+              max="250"
+              value="1"
+              class="form-control"
+            />
+          </div>
+          <div class="col">
+            <label for="gender" class="form-label">Gender</label>
+            <select
+              id="gender"
+              name="gender"
+              class="form-select form-control"
+              aria-label="select gender user"
+            >
+              <option value="" selected>-</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <span class="h3 text-decoration-underline fst-italic">Access</span>
+          </div>
+          <div class="col-md-6">
+            <label for="username" class="form-label">
+              Username <span class="text-danger">*</span>
+            </label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="col">
+            <label for="password" class="form-label">
+              Password <span class="text-danger">*</span>
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              class="form-control"
+            />
+          </div>
+          <div class="col-12 text-end">
+            <button id="btn-submit" type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-user-plus me-2"></i>Sign Up
+              <span
+                id="spinner-submit"
+                class="spinner-border spinner-border-sm d-none ms-2"
+                aria-hidden="true"
+                role="status"
+              ></span>
+            </button>
+          </div>
+          <div class="col-12">
+            <span>
+              <span>Already have an account?</span>
+              <span class="ms-2"><a href="/login">Sign In</a></span>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="alert" class="mt-4 p-2 card border-danger text-center" hidden>
+      <span>
+        <span id="alert-msg" class="me-2"></span>
+        <span id="alert-icon"><i class="fa-regular fa-face-frown"></i></span>
+      </span>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block js %}
+<script>
+  const alert = document.getElementById("alert");
+  const alert_msg = document.getElementById("alert-msg");
+  const alert_icon = document.getElementById("alert-icon");
+  const btn_submit = document.getElementById("btn-submit");
+  const spinner = document.getElementById("spinner-submit");
+
+  handleFormBefore = async (e) => {
+    spinner.classList.remove("d-none");
+    btn_submit.disabled = true;
+  };
+
+  handleFormAfter = async (e) => {
+    const res = e.detail.xhr;
+    const responseText = JSON.parse(res.responseText);
+    console.log(res);
+
+    if (res.status === 201) {
+      alert_icon.remove();
+      alert_msg.innerText =
+        "Registration successful. Please sign in to continue.";
+      alert.classList.replace("border-danger", "border-success");
+    } else if (res.status === 422) {
+      alert_msg.innerText = res["statusText"];
+    } else if (res.status === 400) {
+      alert_msg.innerText = responseText["message"];
+    } else {
+      alert_msg.innerText = res["statusText"];
+      alert_icon.innerHTML = "<i class='fa-solid fa-server'></i>";
+    }
+
+    alert.hidden = false;
+    btn_submit.disabled = false;
+    spinner.classList.add("d-none");
+  };
+</script>
+{% endblock %}

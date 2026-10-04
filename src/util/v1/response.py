@@ -4,7 +4,7 @@ from typing import Any, Dict, Optional
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
-from src.v1.util.timezone_now import f as timezone_now
+from src.util.v1.timezone_now import f as timezone_now
 
 
 def f(

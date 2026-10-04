@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UMS FastAPI</title>
+
+    <!-- favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/static/favicon/site.webmanifest" />
+
+    <!-- bootstrap -->
+    <link href="/static/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- fontawesome icon-->
+    <link
+      rel="stylesheet"
+      href="/static/fontawesome-free-7_1_0/css/all.min.css"
+    />
+    {% block css %}{% endblock %}
+
+    <!-- htmx -->
+    <script src="/static/htmx_2.0.11.min.js"></script>
+  </head>
+  <body>
+    {% block apps %}{% endblock %}
+
+    <!-- htmx extention json-enc -->
+    <script src="/static/htmx_ext_json-enc_2.0.1.js"></script>
+    <!-- bootstrap -->
+    <script src="/static/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    {% block js %}{% endblock %}
+  </body>
+</html>

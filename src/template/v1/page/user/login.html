@@ -1,0 +1,96 @@
+{% extends "base.html" %} {% block apps %}
+<div class="container pt-4">
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="card" style="max-width: 380px; min-width: 300px">
+      <h5 class="card-header text-bg-primary text-center">Login</h5>
+      <div class="card-body">
+        <form
+          id="form-login"
+          hx-post="/login"
+          hx-encoding="json"
+          hx-ext="json-enc"
+          hx-swap="none"
+          hx-on::after-request="handleFormAfter(event)"
+          hx-on::before-request="handleFormBefore(event)"
+          class="row g-3"
+        >
+          <div class="col-12">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+            />
+          </div>
+          <div class="col-12">
+            <label for="pass" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="pass"
+              name="password"
+            />
+          </div>
+          <div class="col-12 text-end">
+            <button id="btn-submit" type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Login
+              <span
+                id="spinner-submit"
+                class="spinner-border spinner-border-sm d-none ms-2"
+                aria-hidden="true"
+                role="status"
+              ></span>
+            </button>
+            <button type="reset" class="btn btn-danger ms-2">
+              <i class="fa-solid fa-eraser me-2"></i>Reset
+            </button>
+          </div>
+          <div class="col-12">
+            <span>
+              <span>Don't have an account?</span>
+              <span class="ms-2"><a href="/register">Sign up</a></span>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="alert" class="mt-4 p-2 card border-danger text-center" hidden>
+      <span>
+        <span id="alert-msg" class="me-2"></span>
+        <span id="alert-icon"><i class="fa-regular fa-face-frown"></i></span>
+      </span>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block js %}
+<script>
+  const btn_submit = document.getElementById("btn-submit");
+  const spinner = document.getElementById("spinner-submit");
+
+  handleFormBefore = async (e) => {
+    spinner.classList.remove("d-none");
+    btn_submit.disabled = true;
+  };
+
+  handleFormAfter = async (e) => {
+    const res = e.detail.xhr;
+    const responseText = JSON.parse(res.responseText);
+    // console.log(res);
+
+    if (res.status === 200) {
+      return;
+    } else if (res.status === 500) {
+      const alert_icon = document.getElementById("alert-icon");
+      alert_icon.innerHTML = "<i class='fa-solid fa-server'></i>";
+    }
+    const alert = document.getElementById("alert");
+    const alert_msg = document.getElementById("alert-msg");
+
+    alert.hidden = false;
+    alert_msg.innerText = responseText.message;
+    btn_submit.disabled = false;
+    spinner.classList.add("d-none");
+  };
+</script>
+{% endblock %}

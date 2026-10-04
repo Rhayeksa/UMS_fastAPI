@@ -1,0 +1,100 @@
+{% extends "base.html" %} {% block apps %} {% include "components/navbar.html"%}
+<div class="container pt-4">
+  <form
+    id="form-profile"
+    hx-post="#"
+    hx-encoding="json"
+    hx-ext="json-enc"
+    hx-swap="none"
+    hx-on::before-request="handleFormBefore(event)"
+    hx-on::after-request="handleFormAfter(event)"
+    hx-vals="js:{gender: document.getElementById('gender').value || null}"
+  >
+    <div class="row">
+      <div class="col fst-italic">
+        <span class="h2">Profile</span>
+      </div>
+      <div class="col text-end" hidden>
+        <button type="button" class="btn btn-warning">Edit</button>
+      </div>
+    </div>
+    <hr />
+    <fieldset disabled>
+      <div class="row g-3">
+        <div class="col-lg-4">
+          <label for="name" class="form-label">name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            class="form-control"
+            value="{{ user['name'] }}"
+          />
+        </div>
+        <div class="col-lg-4">
+          <label for="name" class="form-label">age</label>
+          <input
+            id="age"
+            name="age"
+            type="number"
+            class="form-control"
+            value="{{ user['age'] }}"
+          />
+        </div>
+        <div class="col-lg-4">
+          <label for="gender" class="form-label">Gender</label>
+          <select
+            id="gender"
+            name="gender"
+            class="form-select form-control"
+            aria-label="select gender user"
+          >
+            {% if not user['gender'] %}
+            <option value="" selected>-</option>
+            {% else %}
+            <option value="">-</option>
+            {% endif %} {% if user['gender'] == "M" %}
+            <option value="M" selected>Male</option>
+            {% else %}
+            <option value="M">Male</option>
+            {% endif %} {% if user['gender'] == "F" %}
+            <option value="F" selected>Female</option>
+            {% else %}
+            <option value="F">Female</option>
+            {% endif %}
+          </select>
+        </div>
+      </div>
+      <h2 class="mt-5 fst-italic">Access</h2>
+      <hr />
+      <div class="row g-3">
+        <div class="col">
+          <label for="username" class="form-label">username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            class="form-control"
+            value="{{ user['username'] }}"
+          />
+        </div>
+        <div class="col-lg-6" hidden>
+          <label for="password" class="form-label">password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            class="form-control"
+            value="lorem"
+          />
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  <div class="mt-5 text-end">
+    <a href="/battle/user/{{ user['user_id'] }}" class="fst-italic">
+      Battle information
+    </a>
+  </div>
+</div>
+{% endblock %}
