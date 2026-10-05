@@ -2,8 +2,19 @@
 
 {% block apps %} 
 {% include "components/v1/navbar.html"%}
-<div class="container pt-4">
-    <span class="font-monospace">Hi Administrator</span>
+<div class="container pt-4 border">
+    <span class="font-monospace me-1">Hi Administrator</span>
+    {% if is_administrator %}
+        <i class="fa-solid fa-key"></i>
+    {% endif %}
+    <div class="row row-cols-1 row-cols-lg-2">
+        <div class="col border">
+            <div class="p-3">Chart.js Doughnut Chart => Gender: Male, Female, None</div>
+        </div>
+        <div class="col border">
+            <div class="p-3">Chart.js Bar Chart => Age: <18 and >=18</div>
+        </div>
+    </div>
 </div>
 {% endblock %} 
 

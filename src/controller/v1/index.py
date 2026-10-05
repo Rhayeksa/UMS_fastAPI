@@ -34,8 +34,10 @@ async def f(request: Request):
             request=request,
             name="page/v1/index.html",
             context={
-                "x": "",
+                "navbar_title": "UMS FastAPI",
+                "navbar_icon": "<i class='fa-solid fa-users-gear'></i>",
                 # "navbar_menu": await navbar_menu(token=token),
+                "is_administrator": True,
             },
         )
     except Exception as e:
