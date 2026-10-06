@@ -14,6 +14,8 @@ root = Path(__file__).resolve().parents[1]
 DIR_STATIC = root / "src" / "static"
 templates = root / "src" / "template"
 templates = Jinja2Templates(directory=templates)
+NAV_TITLE = "UMS FastAPI"
+NAV_ICON = "<i class='fa-solid fa-users-gear'></i>"
 
 # JWT
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")

@@ -1,0 +1,6 @@
+aturan:
+1. user baru yang ditambah oleh administrator atau registrasi secara mandiri. username harus memiliki 3 sampai 10 character
+
+fitur:
+1. export data to pdf A4 portrait/landscape, excel dan csv
+2. import data from excel dan csv

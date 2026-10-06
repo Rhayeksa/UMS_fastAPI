@@ -3,10 +3,26 @@
 {% block apps %} 
 {% include "components/v1/navbar.html"%}
 <div class="container pt-4 border">
-    <span class="font-monospace me-1">Hi Administrator</span>
-    {% if is_administrator %}
-        <i class="fa-solid fa-key"></i>
-    {% endif %}
+    <form id="dashboard_filter" class="row g-3 mb-5">
+        <div class="col-12">
+            <label for="date_from" class="form-label">From Date</label>
+            <input
+            type="date"
+            class="form-control"
+            id="date_from"
+            name="date_from"
+            />
+        </div>        
+        <div class="col-12">
+            <label for="date_to" class="form-label">To Date</label>
+            <input
+            type="date"
+            class="form-control"
+            id="date_to"
+            name="date_to"
+            />
+        </div>        
+    </form>
     <div class="row row-cols-1 row-cols-lg-2">
         <div class="col border">
             <div class="p-3">Chart.js Doughnut Chart => Gender: Male, Female, None</div>

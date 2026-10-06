@@ -12,25 +12,31 @@ async def f(token: str):
     # user = await get_detail(user_id=user)
     # user = json.loads(user.body)
     # user = user["data"]
+    # <i class="fa-solid fa-users"></i>
     result = [
         {
-            "icon": "<i class='fa-solid fa-play me-2'></i>",
-            "text": "Let's Play",
+            "icon": "<i class='fa-solid fa-chart-column me-2'></i>",
+            "text": "Dashboard",
             "link": "/",
         },
         {
-            "icon": "<i class='fa-solid fa-rectangle-list me-2'></i>",
-            "text": "Battle Information",
-            # "link": f"/battle/user/{user['user_id']}",
+            "icon": "<i class='fa-solid fa-users me-2'></i>",
+            "text": "Users",
+            "link": "#",
         },
         {
-            "icon": "<i class='fa-solid fa-ranking-star me-2'></i>",
-            "text": "Leaderboard",
+            "icon": "<i class='fa-solid fa-file-import me-2'></i>",
+            "text": "Import",
+            "link": "#",
+        },
+        {
+            "icon": "<i class='fa-solid fa-file-export me-2'></i>",
+            "text": "Export",
             "link": "#",
         },
         {
             "icon": "<i class='fa-solid fa-user me-2'></i>",
-            "text": "Profile",
+            "text": "My Profile",
             # "link": f"/profile/{user['user_id']}",
         },
         {

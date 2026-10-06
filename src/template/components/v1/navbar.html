@@ -1,8 +1,8 @@
 <nav class="navbar fixed-top bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-      <span class="me-1 fst-italic">{{ navbar_title }}</span>
-      {{ navbar_icon | safe }}
+      <span class="me-1 fst-italic">{{ nav_title }}</span>
+      {{ nav_icon | safe }}
     </a>
     <button
       class="navbar-toggler"
@@ -21,18 +21,10 @@
       aria-labelledby="offcanvasNavbarLabel"
     >
       <div class="offcanvas-header">
-        <a
-          class="navbar-brand offcanvas-title"
-          id="offcanvasNavbarLabel"
-          href="/"
-        >
-          <span class="me-1 fst-italic">{{ navbar_title }}</span>
-          {{ navbar_icon | safe }}
-          <!-- icon mahkota untuk user yang sudah mencapai game master -->
-          {% if administrator_icon %}
-          <i class="fa-solid fa-crown"></i>
-          {% endif %}
-        </a>
+        <span class="font-monospace me-1">Hi {{ usr_username }}</span>
+        {% if usr_is_administrator %}
+            <i class="fa-solid fa-key"></i>
+        {% endif %}
         <button
           type="button"
           class="btn-close"
@@ -44,7 +36,7 @@
         <ul
           class="navbar-nav justify-content-end flex-grow-1 pe-3 list-group list-group-flush"
         >
-          {% for i in navbar_menu %}
+          {% for i in nav_menu %}
           <li class="nav-item list-group-item">
             <a class="nav-link" href="{{ i['link'] }}">
               {{ i["icon"] | safe }}{{ i["text"] }}

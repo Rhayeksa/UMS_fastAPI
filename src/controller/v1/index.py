@@ -3,10 +3,9 @@ import json
 from fastapi import APIRouter, Body, Request
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 
-from src.config import templates
+from src.config import NAV_ICON, NAV_TITLE, templates
 from src.util.v1.exception_handlers import http_code_500
-
-# from src.v1.util.navbar_menu import f as navbar_menu
+from src.util.v1.navbar_menu import f as nav_menu
 from src.util.v1.rate_limiter import limiter
 
 # from src.v1.util.verify_token import f as verify_token
@@ -34,10 +33,11 @@ async def f(request: Request):
             request=request,
             name="page/v1/index.html",
             context={
-                "navbar_title": "UMS FastAPI",
-                "navbar_icon": "<i class='fa-solid fa-users-gear'></i>",
-                # "navbar_menu": await navbar_menu(token=token),
-                "is_administrator": True,
+                "nav_title": NAV_TITLE,
+                "nav_icon": NAV_ICON,
+                "nav_menu": await nav_menu(token="token"),
+                "usr_username": "Administrator",
+                "usr_is_administrator": True,
             },
         )
     except Exception as e:
