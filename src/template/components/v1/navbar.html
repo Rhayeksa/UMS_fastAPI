@@ -33,17 +33,54 @@
         ></button>
       </div>
       <div class="offcanvas-body">
-        <ul
-          class="navbar-nav justify-content-end flex-grow-1 pe-3 list-group list-group-flush"
-        >
+        <div class="accordion accordion-flush" id="accordionFlushNavbar">
           {% for i in nav_menu %}
-          <li class="nav-item list-group-item">
-            <a class="nav-link" href="{{ i['link'] }}">
-              {{ i["icon"] | safe }}{{ i["text"] }}
-            </a>
-          </li>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                {% if i["sub"] %}
+                <button
+                  class="py-2 ps-1 accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-{{ loop.index0 }}"
+                  aria-expanded="false"
+                  aria-controls="flush-{{ loop.index0 }}"
+                >
+                  {{ i["icon"] | safe }}
+                  {{ i["text"] }}
+                </button>
+                {% else %}
+                  <a
+                    class="py-2 ps-1 accordion-button collapsed text-decoration-none fw-normal"
+                    href="{{ i['link'] }}"
+                    style="--bs-accordion-btn-icon: none; --bs-accordion-btn-active-icon: none;"
+                  > {{ i["icon"] | safe }} {{ i["text"] }}
+                  </a>
+                {% endif %}
+              </h2>
+              <div id="flush-{{ loop.index0 }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushNavbar">
+                <div class="accordion-body py-2 ms-2">
+                  <div class="accordion accordion-flush">
+                    {% if i["sub"] %}
+                      {% for j in i["sub"] %}
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <a
+                              class="py-2 ps-1 accordion-button collapsed text-decoration-none fw-normal"
+                              href="{{ j['link'] }}"
+                              style="--bs-accordion-btn-icon: none; --bs-accordion-btn-active-icon: none;"
+                            > {{ j["icon"] | safe }} {{ j["text"] }}
+                            </a>
+                          </h2>
+                        </div>
+                        {% endfor %}
+                      {% endif %}                        
+                  </div>
+                </div>
+              </div>
+            </div>
           {% endfor %}
-        </ul>
+        </div>
       </div>
     </div>
   </div>

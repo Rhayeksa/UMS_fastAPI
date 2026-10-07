@@ -25,14 +25,20 @@ async def f(token: str):
             "link": "#",
         },
         {
-            "icon": "<i class='fa-solid fa-file-import me-2'></i>",
-            "text": "Import",
-            "link": "#",
-        },
-        {
-            "icon": "<i class='fa-solid fa-file-export me-2'></i>",
-            "text": "Export",
-            "link": "#",
+            "icon": "<i class='fa-solid fa-screwdriver-wrench me-2'></i>",
+            "text": "Tools",
+            "sub": [
+                {
+                    "icon": "<i class='fa-solid fa-file-import me-2'></i>",
+                    "text": "Import",
+                    "link": "#",
+                },
+                {
+                    "icon": "<i class='fa-solid fa-file-export me-2'></i>",
+                    "text": "Export",
+                    "link": "#",
+                },
+            ],
         },
         {
             "icon": "<i class='fa-solid fa-user me-2'></i>",
