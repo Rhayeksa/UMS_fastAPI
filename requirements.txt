@@ -4,3 +4,4 @@ PyJWT==2.15.1 # auth
 SQLAlchemy==2.1.3 # ORM
 passlib[argon2] # encryption
 slowapi==0.1.10 # rate limit request 
+tzdata==2026.5
