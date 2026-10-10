@@ -6,7 +6,11 @@ fitur:
 2. import data from excel dan csv
 
 filter dashboard:
-- from date
-- to data
+- from date (default: today)
+- to data (default: today)
+
+- role: admin and user
+- access: read, update, delete, import, export (take down)
 - select option gender: Male and Female
 - select option age: <18 and >=18
+- button set
