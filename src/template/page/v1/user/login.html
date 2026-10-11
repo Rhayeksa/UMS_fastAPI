@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% block css %}
+{% endblock %}
+
 {% block apps %}
 <div class="container pt-4">
   <div class="position-absolute top-50 start-50 translate-middle">
@@ -68,6 +71,8 @@
 {% endblock %}
 
 {% block js %}
+<script src="{{ url_for('static', path='/htmx_2.0.11.min.js') }}"></script>
+<script src="{{ url_for('static', path='/htmx_ext_json-enc_2.0.1.js') }}"></script>
 <script>
   const btn_submit = document.getElementById("btn-submit");
   const spinner = document.getElementById("spinner-submit");
