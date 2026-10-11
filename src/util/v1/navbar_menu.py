@@ -41,6 +41,11 @@ async def f(token: str):
             ],
         },
         {
+            "icon": "<i class='fa-solid fa-user-clock me-2'></i>",
+            "text": "Logs",
+            # "link": f"/profile/{user['user_id']}",
+        },
+        {
             "icon": "<i class='fa-solid fa-user me-2'></i>",
             "text": "My Profile",
             # "link": f"/profile/{user['user_id']}",
