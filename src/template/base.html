@@ -3,51 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>UMS FastAPI</title>
 
-    <!-- favicon -->
+    <!-- Favicon -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/static/favicon/apple-touch-icon.png"
+      href="{{ url_for('static', path='/favicon/apple-touch-icon.png') }}"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/static/favicon/favicon-32x32.png"
+      href="{{ url_for('static', path='/favicon/favicon-32x32.png') }}"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/static/favicon/favicon-16x16.png"
+      href="{{ url_for('static', path='/favicon/favicon-16x16.png') }}"
     />
-    <link rel="manifest" href="/static/favicon/site.webmanifest" />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', path='/favicon/site.webmanifest') }}"
+    />
 
-    <!-- bootstrap -->
-    <link href="/static/bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- fontawesome icon-->
+    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
-      href="/static/fontawesome-free-7_1_0/css/all.min.css"
+      href="{{ url_for('static', path='/bootstrap-5.3.8-dist/css/bootstrap.min.css') }}"
     />
+
+    <!-- Font Awesome Icon CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='/fontawesome-free-7_1_0/css/all.min.css') }}"
+    />
+
+    <!-- Page-specific CSS -->
     {% block css %}{% endblock %}
-
-    <!-- htmx -->
-    <script src="/static/htmx_2.0.11.min.js"></script>
-
-    <!-- chartjs -->
-    <script src="/static/chart_4.5.1/dist/chart.umd.min.js"></script>
   </head>
+
   <body>
     {% block apps %}{% endblock %}
 
-    <!-- htmx extention json-enc -->
-    <script src="/static/htmx_ext_json-enc_2.0.1.js"></script>
-    <!-- bootstrap -->
-    <script src="/static/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    <!-- HTMX -->
+    <!-- <script src="{{ url_for('static', path='/htmx_2.0.11.min.js') }}"></script> -->
+
+    <!-- HTMX JSON Encoding Extension -->
+    <!-- <script src="{{ url_for('static', path='/htmx_ext_json-enc_2.0.1.js') }}"></script> -->
+
+    <!-- Chart.js -->
+    <!-- <script src="{{ url_for('static', path='/chart_4.5.1/dist/chart.umd.min.js') }}"></script> -->
+
+    <!-- Bootstrap JavaScript -->
+    <script src="{{ url_for('static', path='/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Page-specific JavaScript -->
     {% block js %}{% endblock %}
   </body>
 </html>
