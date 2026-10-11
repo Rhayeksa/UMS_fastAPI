@@ -9,8 +9,15 @@ filter dashboard:
 - from date (default: today)
 - to data (default: today)
 
-- role: admin and user
-- access: read, update, delete, import, export (take down)
-- select option gender: Male and Female
-- select option age: <18 and >=18
+- role: admin and user (gunakan select option)
+- access: read, update, delete, import, export (tidak jadi take down) (gunakan check box)
+- select option gender: Male, Female dan None (gunakan check box)
+- select option age: <18 and >=18 (gunakan select option)
 - button set
+
+diagram dashboard:
+- table top 10 => latest user register: username, role, gender, age
+- Chart.js Bar vertical Chart => Role: Administrator & user
+- Chart.js Bar horizontal Chart => Access: if(role administrator) Then data 0 Else 
+- Chart.js Doughnut Chart => Gender: Male, Female, None
+- Chart.js Bar Chart => Age: < 18 and >= 18
