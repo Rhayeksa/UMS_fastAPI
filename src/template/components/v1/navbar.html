@@ -58,10 +58,10 @@
                   </a>
                 {% endif %}
               </h2>
+              {% if i["sub"] %}
               <div id="flush-{{ loop.index0 }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushNavbar">
                 <div class="accordion-body py-2 ms-2">
                   <div class="accordion accordion-flush">
-                    {% if i["sub"] %}
                       {% for j in i["sub"] %}
                         <div class="accordion-item">
                           <h2 class="accordion-header">
@@ -74,10 +74,10 @@
                           </h2>
                         </div>
                         {% endfor %}
-                      {% endif %}                        
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                {% endif %}                        
             </div>
           {% endfor %}
         </div>
