@@ -18,6 +18,7 @@
                 class="form-control"
                 id="date_from"
                 name="date_from"
+                value="2026-12-01"
             />
         </div>
         <div class="col-md-6">
@@ -27,6 +28,7 @@
                 class="form-control"
                 id="date_to"
                 name="date_to"
+                value="2027-01-01"
             />
         </div>
         <div class="col-md-6 col-lg-3">
@@ -142,7 +144,7 @@
 {% block js %}
 <!-- <script src="{{ url_for('static', path='/jquery-3.7.1.js') }}"></script> -->
 <!-- <script src="{{ url_for('static', path='/DataTables/datatables.min.js') }}"></script> -->
-<!-- <script src="{{ url_for('static', path='/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script> -->
+<script src="{{ url_for('static', path='/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url_for('static', path='/chart_4.5.1/dist/chart.umd.min.js') }}"></script>
 <script src="{{ url_for('static', path='/use-bootstrap-select-2.2.1/dist/use-bootstrap-select.min.js') }}"></script>
 <script>
