@@ -16,7 +16,7 @@ filter dashboard:
 - button set
 
 diagram dashboard:
-- table top 10 => latest user register: username, role, gender, age
+- table top 5 => latest user register: username, role, gender, age
 - Chart.js Bar vertical Chart => Role: Administrator & user
 - Chart.js Bar horizontal Chart => Access: if(role administrator) Then data 0 Else 
 - Chart.js Doughnut Chart => Gender: Male, Female, None
