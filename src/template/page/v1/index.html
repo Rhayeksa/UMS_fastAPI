@@ -79,59 +79,83 @@
     </form>
     <hr class="border border-primary border-1 opacity-25" />
     <div class="row g-3">
-        <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <!-- <span class="h5">Top 10 New users</span> -->
-                    <h5 class="mb-3">Top 5 Users Order By Created At</h5>
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Created At</th>
-                                <th class="text-center">Username</th>
-                                <th class="text-center">Role</th>
-                                <th class="text-center">Gender</th>
-                                <th class="text-center">Age</th>
-                            </tr>
-                        </thead>
-                        {% if not top_10_new_usr %}
-                        <tbody class="text-center text-muted fst-italic"></tbody>
-                        {% else %}
-                        <tbody>
-                            {% for i in top_10_new_usr %}
-                            <tr data-created-at="{{ i['created_at'] }}">
-                                <td>{{ i["created_at"] }}</td>
-                                <td class="text-center">{{ i["username"] }}</td>
-                                <td class="text-center">{{ i["role"] }}</td>
-                                <td class="text-center">{{ i["gender"] }}</td>
-                                <td class="text-center">{{ i["age"] }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                        {% endif %}
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5>Role</h5>
-                    <canvas id="chartGender"></canvas>
+                    <canvas id="chartDoughnutRole"></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Age</h5>
+                    <canvas id="chartDoughnutAge"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5>Gender</h5>
-                    <canvas id="chartGenderx"></canvas>
+                    <canvas id="chartDoughnutGender"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Age Per Month</h5>
+                    <canvas id="chartLineAge"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Gender Per Month</h5>
+                    <canvas id="chartLineGender"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="mb-3">Top 5 Users Order By Created At</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 180px;">Created At</th>
+                                    <th style="min-width: 150px;" class="text-center">Username</th>
+                                    <th style="min-width: 150px;" class="text-center">Role</th>
+                                    <th style="min-width: 120px;" class="text-center">Gender</th>
+                                    <th style="min-width: 70px;" class="text-center">Age</th>
+                                </tr>
+                            </thead>
+                            {% if not top_10_new_usr %}
+                            <tbody class="text-center text-muted fst-italic"></tbody>
+                            {% else %}
+                            <tbody>
+                                {% for i in top_10_new_usr %}
+                                <tr data-created-at="{{ i['created_at'] }}">
+                                    <td>{{ i["created_at"] }}</td>
+                                    <td>{{ i["username"] }}</td>
+                                    <td class="text-center">{{ i["role"] }}</td>
+                                    <td class="text-center">{{ i["gender"] }}</td>
+                                    <td class="text-end">{{ i["age"] }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            {% endif %}
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- <div style="height: 250px;"></div> -->
 <div class="text-center py-4 border-top fixed-bottom bg-body-tertiary">
   <div class="fw-medium">
     <i class="bi bi-c-circle"></i> Copyright 2024
@@ -148,24 +172,8 @@
 <script src="{{ url_for('static', path='/chart_4.5.1/dist/chart.umd.min.js') }}"></script>
 <script src="{{ url_for('static', path='/use-bootstrap-select-2.2.1/dist/use-bootstrap-select.min.js') }}"></script>
 <script>
-    const gender = new UseBootstrapSelect(document.getElementById('gender'))
-
-    // new DataTable("#new_users", {
-    //     order: [[0, "desc"]],
-    //     ordering: false,
-    //     searching: false,
-    //     lengthChange: false,
-    //     paging: false,
-    //     pageLength: 10,
-    //     info: false,
-    //     layout: {
-    //     bottomEnd: null, // Menghilangkan navigasi (tombol Next/Prev)
-    //     },
-    // });
-
-    const ctxx = document.getElementById("chartGenderx");
-    const ctx = document.getElementById("chartGender");
-    new Chart(ctx, {
+    const gender = new UseBootstrapSelect(document.getElementById('gender'));
+    new Chart(document.getElementById("chartDoughnutRole"), {
         type: "doughnut",
         data: {
             labels: ["Male", "Female", "None"],
@@ -186,8 +194,30 @@
             // }
             }
         },
-    })
-    new Chart(ctxx, {
+    });
+    new Chart(document.getElementById("chartDoughnutAge"), {
+        type: "doughnut",
+        data: {
+            labels: ["Male", "Female", "None"],
+            datasets: [{
+                // label: "",
+                data: [10, 20, 30],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+            legend: {
+                position: 'bottom',
+            },
+            // title: {
+            //     display: true,
+            //     text: 'Gender'
+            // }
+            }
+        },
+    });
+    new Chart(document.getElementById("chartDoughnutGender"), {
         type: "doughnut",
         data: {
             labels: ["Male", "Female", "None"],
@@ -208,7 +238,72 @@
             // }
             }
         },
-    })
-
+    });
+    new Chart(document.getElementById("chartLineAge"), {
+        type: 'line',
+        data: {
+            labels: ["2026-01", "2026-02", "2026-03", "2026-04","2026-05",],
+            datasets: [
+                {
+                    label: '< 18',
+                    data: [2, 4, 6, 8, 10],
+                },
+                {
+                    label: '>= 18',
+                    data: [3, 5, 7, 9, 11],
+                },
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {position: 'top'},
+            },
+            scales: {
+                y: {suggestedMin: 0}
+            },
+        },
+    });
+   new Chart(document.getElementById("chartLineGender"), {
+        type: 'line',
+        data: {
+            labels: ["2026-01", "2026-02", "2026-03", "2026-04","2026-05",],
+            datasets: [
+                {
+                    label: 'None',
+                    data: [10, 15, 20, 25, 30],
+                },
+                {
+                    label: 'Male',
+                    data: [2, 4, 6, 8, 10],
+                },
+                {
+                    label: 'Female',
+                    data: [3, 5, 7, 9, 11],
+                },
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {position: 'top'},
+            },
+            scales: {
+                y: {suggestedMin: 0}
+            },
+        },
+    });
+    // new DataTable("#new_users", {
+    //     order: [[0, "desc"]],
+    //     ordering: false,
+    //     searching: false,
+    //     lengthChange: false,
+    //     paging: false,
+    //     pageLength: 10,
+    //     info: false,
+    //     layout: {
+    //     bottomEnd: null, // Menghilangkan navigasi (tombol Next/Prev)
+    //     },
+    // });
 </script>
 {% endblock %}
