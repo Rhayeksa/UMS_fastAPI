@@ -90,32 +90,38 @@
         <div class="col-lg-4">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5>Age</h5>
-                    <canvas id="chartDoughnutAge"></canvas>
+                    <h5>Gender</h5>
+                    <canvas id="chartDoughnutGender"></canvas>
                 </div>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5>Gender</h5>
-                    <canvas id="chartDoughnutGender"></canvas>
+                    <h5>Age</h5>
+                    <canvas id="chartDoughnutAge"></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5>Age Per Month</h5>
-                    <canvas id="chartLineAge"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
+        <div class="col-12">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5>Gender Per Month</h5>
                     <canvas id="chartLineGender"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>Age Per Month</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <div style="min-width: 850px;">
+                                <canvas id="chartLineAge"></canvas>
+                            </div>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -229,9 +235,9 @@
         options: {
             responsive: true,
             plugins: {
-            legend: {
-                position: 'bottom',
-            },
+                legend: {
+                    position: 'bottom',
+                },
             // title: {
             //     display: true,
             //     text: 'Gender'
@@ -242,27 +248,50 @@
     new Chart(document.getElementById("chartLineAge"), {
         type: 'line',
         data: {
-            labels: ["2026-01", "2026-02", "2026-03", "2026-04","2026-05",],
+            labels: [
+                "2026-januari",
+                "2026-februari",
+                "2026-maret",
+                "2026-april",
+                "2026-mei",
+                "2026-juni",
+                "2026-juli",
+                "2026-agustus",
+                "2026-september",
+                "2026-oktober",
+                "2026-november",
+                "2026-desember",
+                "2026-desember2",
+                "2026-desember3",
+                "2026-desember4",
+                "2026-januari",
+                "2026-januari2",
+                "2026-januari3",
+            ],
             datasets: [
                 {
                     label: '< 18',
-                    data: [2, 4, 6, 8, 10],
+                    data: [2, 4, 6, 2, 4, 6, 8, 10, 2, 4, 6, 8, 10, 12, 14, 2, 4, 6],
                 },
                 {
                     label: '>= 18',
-                    data: [3, 5, 7, 9, 11],
+                    data: [2, 4, 6, 3, 5, 7, 9, 11, 3, 5, 7, 9, 11, 13, 15, 2, 4, 6],
                 },
             ]
         },
         options: {
             responsive: true,
+            // maintainAspectRatio: false,
             plugins: {
-                legend: {position: 'top'},
+                legend: {position: 'left',},
             },
             scales: {
-                y: {suggestedMin: 0}
+                y: { beginAtZero: true }
             },
         },
+        // plugins: {
+        //     scrollBar: {enable: true, scrollType: 'Horizontal'},
+        // },
     });
    new Chart(document.getElementById("chartLineGender"), {
         type: 'line',
@@ -285,11 +314,12 @@
         },
         options: {
             responsive: true,
+            // maintainAspectRatio: false,
             plugins: {
                 legend: {position: 'top'},
             },
             scales: {
-                y: {suggestedMin: 0}
+                y: { beginAtZero: true }
             },
         },
     });
