@@ -3,18 +3,19 @@
 # )
 # from src.controller.user.profile import router as profile
 from src.controller.v1.index import router as index
+from src.controller.v1.log.index import router as log
 from src.controller.v1.user.login import router as login
 
 # from src.controller.v1.user.logout import router as logout
 from src.controller.v1.user.register import router as register
 
 routes = [
-    # page
+    ## page
     index,
     login,
     register,
+    log,
     # profile,
-    # battle_info_by_user_id,
-    # util
+    ## util
     # logout,
 ]

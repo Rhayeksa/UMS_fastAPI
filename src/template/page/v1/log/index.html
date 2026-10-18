@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block apps %}
+{% include "components/v1/navbar.html"%}
+<div class="container pt-4" style="padding-bottom: 100px;">
+    <h1>Hi</h1>
+</div>
+<div class="text-center py-4 border-top fixed-bottom bg-body-tertiary">
+  <div class="fw-medium">
+    <i class="bi bi-c-circle"></i> Copyright 2024
+    <div class="vr"></div>
+    Rhayeksa
+  </div>
+</div>
+{% endblock %} 
+
+{% block js %}
+<script src="{{ url_for('static', path='/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+<script>
+</script>
+{% endblock %}
