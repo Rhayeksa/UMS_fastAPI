@@ -10,7 +10,16 @@
 {% block apps %}
 {% include "components/v1/navbar.html"%}
 <div class="container pt-4" style="padding-bottom: 100px;">
-    <form id="dashboard_filter" class="row g-3">
+    <form
+        id="form-dashboard-filter"
+        hx-post="/"
+        hx-encoding="json"
+        hx-ext="json-enc"
+        hx-swap="none"
+        hx-on::after-request="handleFormAfter(event)"
+        hx-on::before-request="handleFormBefore(event)"
+        class="row g-3"
+    >
         <div class="col-md-6">
             <label for="date_from" class="form-label">From Date</label>
             <input

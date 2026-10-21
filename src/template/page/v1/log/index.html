@@ -1,12 +1,74 @@
 {% extends "base.html" %}
 
 {% block css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', path='/gridjs-6.2.0/dist/theme/mermaid.min.css') }}"
+/>
 {% endblock %}
 
 {% block apps %}
 {% include "components/v1/navbar.html"%}
 <div class="container pt-4" style="padding-bottom: 100px;">
-    <h1>Hi</h1>
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Logs</a></li>
+      </ol>
+    </nav>
+    <form
+        id="form-dashboard-filter"
+        hx-post="/"
+        hx-encoding="json"
+        hx-ext="json-enc"
+        hx-swap="none"
+        hx-on::after-request="handleFormAfter(event)"
+        hx-on::before-request="handleFormBefore(event)"
+        class="row g-3"
+    >
+        <div class="col-md-4">
+            <label for="date_from" class="form-label">From Date</label>
+            <input
+                type="date"
+                class="form-control"
+                id="date_from"
+                name="date_from"
+                value="2026-12-01"
+            />
+        </div>
+        <div class="col-md-4">
+            <label for="date_to" class="form-label">To Date</label>
+            <input
+                type="date"
+                class="form-control"
+                id="date_to"
+                name="date_to"
+                value="2027-01-01"
+            />
+        </div>
+        <div class="col-md-4 col-lg-3">
+            <label for="user_code" class="form-label">User Code</label>
+            <input
+                type="text"
+                class="form-control"
+                id="date_to"
+                name="user_code"
+            />
+        </div>
+        <button class="col mx-2 btn btn-primary fw-bold" type="submit">
+            <i class="fa-solid fa-play me-1"></i>Set
+        </button>
+    </form>
+    <hr class="border border-primary border-1 opacity-25" />
+    <div class="row g-3">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="mb-3">Preview Logs Users 100 rows</h5>
+                    <div id="wrapper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="text-center py-4 border-top fixed-bottom bg-body-tertiary">
   <div class="fw-medium">
@@ -18,7 +80,22 @@
 {% endblock %} 
 
 {% block js %}
-<script src="{{ url_for('static', path='/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', path='/gridjs-6.2.0/dist/gridjs.umd.js') }}"></script>
 <script>
+  new gridjs.Grid({
+    columns: ["Name", "Email", "Phone Number"],
+    data: [
+      ["John", "john@example.com", "(353) 01 222 3333"],
+      ["Mark", "mark@gmail.com", "(01) 22 888 4444"],
+      ["Eoin", "eoin@gmail.com", "0097 22 654 00033"],
+      ["Sarah", "sarahcdd@gmail.com", "+322 876 1233"],
+      ["Afshin", "afshin@mail.com", "(353) 22 87 8356"]
+    ],
+    resizable: true,
+    sort: true,
+    pagination: {
+      limit: 2
+    },
+  }).render(document.getElementById("wrapper"));
 </script>
 {% endblock %}

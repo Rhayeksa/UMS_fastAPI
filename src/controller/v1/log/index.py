@@ -3,7 +3,7 @@ import json
 from fastapi import APIRouter, Body, Request
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 
-from src.config import NAV_ICON, NAV_TITLE, templates
+from src.config import NAV_ICON, NAV_TITLE, router, templates
 from src.util.v1.exception_handlers import http_code_500
 from src.util.v1.navbar_menu import f as nav_menu
 from src.util.v1.rate_limiter import limiter
@@ -12,7 +12,7 @@ from src.util.v1.rate_limiter import limiter
 
 # from src.v1.util.response import f as response
 
-router = APIRouter()
+# router = APIRouter()
 
 
 @router.get(
@@ -38,41 +38,42 @@ async def f(request: Request):
                 "nav_menu": await nav_menu(token="token"),
                 "usr_username": "Administrator",
                 "usr_is_administrator": True,
-                "top_10_new_usr": [
+                "top_100": [
                     {
-                        "created_at": "2026-12-31 15:30:59",
+                        "log_id": "6",
+                        "timestamp": "2026-12-31 15:30:59",
                         "username": "Rhayeksa",
-                        "role": "Administrator",
-                        "gender": "Male",
-                        "age": "28",
+                        "log": "{'menu': 'users', 'req': 'get'}",
                     },
                     {
-                        "created_at": "2026-12-31 15:30:59",
+                        "log_id": "5",
+                        "timestamp": "2026-12-31 15:30:59",
                         "username": "Rhayeksa",
-                        "role": "Administrator",
-                        "gender": "Male",
-                        "age": "28",
+                        "log": "{'menu': 'users', 'req': 'get'}",
                     },
                     {
-                        "created_at": "2026-12-31 15:30:59",
+                        "log_id": "4",
+                        "timestamp": "2026-12-31 15:30:59",
                         "username": "Rhayeksa",
-                        "role": "Administrator",
-                        "gender": "Male",
-                        "age": "28",
+                        "log": "{'menu': 'users', 'req': 'get'}",
                     },
                     {
-                        "created_at": "2026-12-31 15:30:59",
+                        "log_id": "3",
+                        "timestamp": "2026-12-31 15:30:59",
                         "username": "Rhayeksa",
-                        "role": "Administrator",
-                        "gender": "Male",
-                        "age": "28",
+                        "log": "{'menu': 'users', 'req': 'get'}",
                     },
                     {
-                        "created_at": "2026-12-31 15:30:59",
+                        "log_id": "2",
+                        "timestamp": "2026-12-31 15:30:59",
                         "username": "Rhayeksa",
-                        "role": "Administrator",
-                        "gender": "Male",
-                        "age": "28",
+                        "log": "{'menu': 'users', 'req': 'get'}",
+                    },
+                    {
+                        "log_id": "1",
+                        "timestamp": "2026-12-31 15:30:59",
+                        "username": "Rhayeksa",
+                        "log": "{'menu': 'users', 'req': 'get'}",
                     },
                 ],
             },
