@@ -1,21 +1,17 @@
-# from src.controller.battle.battle_info_by_user_id import (
-#     router as battle_info_by_user_id,
-# )
-# from src.controller.user.profile import router as profile
-from src.controller.v1.index import router as index
+# from src.controller.v1.dashboard.filter import router as v1_dashboard_filter
+from src.controller.v1.dashboard.index import router as v1_dashboard_index
 from src.controller.v1.log.index import router as log
 from src.controller.v1.user.login import router as login
-
-# from src.controller.v1.user.logout import router as logout
 from src.controller.v1.user.register import router as register
 
+# from src.controller.v1.user.logout import router as logout
+
 routes = [
-    ## page
-    index,
+    v1_dashboard_index,
     login,
     register,
     log,
+
     # profile,
-    ## util
     # logout,
 ]
