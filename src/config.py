@@ -3,6 +3,7 @@ import urllib.parse
 from pathlib import Path
 
 from dotenv import load_dotenv
+from fastapi import APIRouter
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -16,6 +17,7 @@ templates = root / "src" / "template"
 templates = Jinja2Templates(directory=templates)
 NAV_TITLE = "UMS FastAPI"
 NAV_ICON = "<i class='fa-solid fa-users-gear'></i>"
+router = APIRouter()
 
 # JWT
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
