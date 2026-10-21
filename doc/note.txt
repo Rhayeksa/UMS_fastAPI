@@ -21,3 +21,14 @@ diagram dashboard:
 - Chart.js Bar horizontal Chart => Access: if(role administrator) Then data 0 Else 
 - Chart.js Doughnut Chart => Gender: Male, Female, None
 - Chart.js Bar Chart => Age: < 18 and >= 18
+
+page logs filter:
+- from date (default: today)
+- to data (default: today)
+- user_code
+
+page logs table:
+- log ID
+- timestamp
+- log
+  - {"menu": "users", "req": "get", "res": "OK", "data_sample": }
