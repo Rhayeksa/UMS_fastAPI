@@ -5,20 +5,6 @@
   rel="stylesheet"
   href="{{ url_for('static', path='/gridjs-6.2.0/dist/theme/mermaid.min.css') }}"
 />
-<style>
-  /* .gridjs-footer { */
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* align-items: center; */
-    /* flex-wrap: nowrap; */
-    /* overflow-x: scroll; */
-  /* } */
-  /* .gridjs-pagination { */
-    /* overflow-x: scroll; */
-    /* display: flex; */
-    /* align-items: center; */
-  /* } */
-</style>
 {% endblock %}
 
 {% block apps %}
@@ -104,7 +90,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5 class="mb-3">Latest 100 Log Rows</h5>
-                    <div id="wrapper"></div>
+                    <div id="table-logs"></div>
                 </div>
             </div>
         </div>
@@ -129,7 +115,7 @@
         // "Role",
         "Url",
         {name: 'Req Method', width: '150px' },
-        "Action",
+        {name: 'Action', attributes: (cell, row, column) => {if(!row){return {"style": "text-align: center;"};}}},
         "IP Address"
     ],
     data: [
@@ -174,6 +160,6 @@
     //     'results': () => 'Records'
     //     }
     // }
-  }).render(document.getElementById("wrapper"));
+  }).render(document.getElementById("table-logs"));
 </script>
 {% endblock %}
