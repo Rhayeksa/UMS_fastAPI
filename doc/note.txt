@@ -53,7 +53,7 @@ munculkan msg alert success or error
 index fixing:
 - form date required
 - to date required
-- buat diagram baru age per month Male: legend => < 18 and >= 18
-- buat diagram baru age per month Female: legend => < 18 and >= 18
-- buat diagram baru age per month None: legend => < 18 and >= 18
+- buat diagram baru age per month Male: legend => < 18 and >= 18 (pending)
+- buat diagram baru age per month Female: legend => < 18 and >= 18 (pending)
+- buat diagram baru age per month None: legend => < 18 and >= 18 (pending)
 - implementasi table dengan gridjs
