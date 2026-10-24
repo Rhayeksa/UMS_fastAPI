@@ -36,6 +36,8 @@ req method
 action
 IP
 
+---
+
 Log logic:
 if press - [icon play] Preview then:
 munculkan list log latest 100 row order by timestamp desc
@@ -45,3 +47,13 @@ munculkan msg alert success or error
 
 if press - [icon excel] Export Excel then:
 munculkan msg alert success or error
+
+---
+
+index fixing:
+- form date required
+- to date required
+- buat diagram baru age per month Male: legend => < 18 and >= 18
+- buat diagram baru age per month Female: legend => < 18 and >= 18
+- buat diagram baru age per month None: legend => < 18 and >= 18
+- implementasi table dengan gridjs
