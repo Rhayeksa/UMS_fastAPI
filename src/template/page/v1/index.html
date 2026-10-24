@@ -102,7 +102,7 @@
         <div class="col-lg-4">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5>Role</h5>
+                    <h5 class="mb-3">Role</h5>
                     <canvas id="chartDoughnutRole"></canvas>
                 </div>
             </div>
@@ -110,7 +110,7 @@
         <div class="col-lg-4">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5>Gender</h5>
+                    <h5 class="mb-3">Gender</h5>
                     <canvas id="chartDoughnutGender"></canvas>
                 </div>
             </div>
@@ -118,23 +118,29 @@
         <div class="col-lg-4">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5>Age</h5>
+                    <h5 class="mb-3">Age</h5>
                     <canvas id="chartDoughnutAge"></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-lg-6">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5>Gender Per Month</h5>
-                    <canvas id="chartLineGender"></canvas>
+                    <h5 class="mb-3">Gender Per Month</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <div style="min-width: 850px;">
+					                    <canvas id="chartLineGender"></canvas>
+														</div>
+												</table>
+										</div>
                 </div>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-lg-6">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5>Age Per Month</h5>
+                    <h5 class="mb-3">Age Per Month</h5>
                     <div class="table-responsive">
                         <table class="table">
                             <div style="min-width: 850px;">
@@ -169,9 +175,13 @@
 <script src="{{ url_for('static', path='/chart.js-4.5.1/dist/chart.umd.min.js') }}"></script>
 <script src="{{ url_for('static', path='/gridjs-6.2.0/dist/gridjs.umd.js') }}"></script>
 
+<!-- Select -->
+<script>
+    new UseBootstrapSelect(document.getElementById('gender'));
+</script>
+
 <!-- Chart -->
 <script>
-    const gender = new UseBootstrapSelect(document.getElementById('gender'));
     new Chart(document.getElementById("chartDoughnutRole"), {
         type: "doughnut",
         data: {
@@ -226,6 +236,35 @@
             }
         },
     });
+   new Chart(document.getElementById("chartLineGender"), {
+        type: 'line',
+        data: {
+            labels: ["2026-01", "2026-02", "2026-03", "2026-04","2026-05",],
+            datasets: [
+                {
+                    label: 'None',
+                    data: [10, 15, 20, 25, 30],
+                },
+                {
+                    label: 'Male',
+                    data: [2, 4, 6, 8, 10],
+                },
+                {
+                    label: 'Female',
+                    data: [3, 5, 7, 9, 11],
+                },
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {position: 'left',},
+            },
+            scales: {
+                y: { beginAtZero: true }
+            },
+        },
+    });
     new Chart(document.getElementById("chartLineAge"), {
         type: 'line',
         data: {
@@ -264,35 +303,6 @@
             responsive: true,
             plugins: {
                 legend: {position: 'left',},
-            },
-            scales: {
-                y: { beginAtZero: true }
-            },
-        },
-    });
-   new Chart(document.getElementById("chartLineGender"), {
-        type: 'line',
-        data: {
-            labels: ["2026-01", "2026-02", "2026-03", "2026-04","2026-05",],
-            datasets: [
-                {
-                    label: 'None',
-                    data: [10, 15, 20, 25, 30],
-                },
-                {
-                    label: 'Male',
-                    data: [2, 4, 6, 8, 10],
-                },
-                {
-                    label: 'Female',
-                    data: [3, 5, 7, 9, 11],
-                },
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {position: 'top'},
             },
             scales: {
                 y: { beginAtZero: true }
