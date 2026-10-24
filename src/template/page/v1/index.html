@@ -36,7 +36,6 @@
                 class="form-control"
                 id="date_from"
                 name="date_from"
-                value="2026-12-01"
                 required
             />
         </div>
@@ -47,7 +46,6 @@
                 class="form-control"
                 id="date_to"
                 name="date_to"
-                value="2027-01-01"
                 required
             />
         </div>
@@ -64,6 +62,23 @@
                 <option value="3">User</option>
             </select>
         </div>
+        <div class="col-md-12 col-lg-4">
+            <label for="gender" class="form-label">Gender<span class="text-danger ms-1">*</span></label>
+            <select
+                id="gender"
+                name="gender[]"
+                class="form-select"
+                aria-label="Gender select"
+                data-searchable="true"
+                data-creatable-text="Add &lt;b&gt;{value}&lt;/b&gt;..."
+								required
+                multiple
+            >
+                <option value="none">None</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
         <div class="col-md-6 col-lg-3">
             <label for="age" class="form-label">Age</label>
             <select
@@ -75,22 +90,6 @@
                 <option selected>All</option>
                 <option value="2">&lt; 18</option>
                 <option value="3">&gt;= 18</option>
-            </select>
-        </div>
-        <div class="col-md-12 col-lg-4">
-            <label for="gender" class="form-label">Gender</label>
-            <select
-                id="gender"
-                name="gender[]"
-                class="form-select"
-                aria-label="Gender select"
-                data-searchable="true"
-                data-creatable-text="Add &lt;b&gt;{value}&lt;/b&gt;..."
-                multiple
-            >
-                <option selected value="1">None</option>
-                <option selected value="2">Male</option>
-                <option selected value="3">Female</option>
             </select>
         </div>
         <button class="col mx-2 btn btn-primary fw-bold" type="submit">
@@ -187,26 +186,8 @@
         data: {
             labels: ["Male", "Female", "None"],
             datasets: [{
-                // label: "",
-                data: [10, 20, 30],
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                },
-            }
-        },
-    });
-    new Chart(document.getElementById("chartDoughnutAge"), {
-        type: "doughnut",
-        data: {
-            labels: ["Male", "Female", "None"],
-            datasets: [{
-                // label: "",
-                data: [10, 20, 30],
+                // data: [10, 20, 30],
+                data: [],
             }]
         },
         options: {
@@ -223,8 +204,26 @@
         data: {
             labels: ["Male", "Female", "None"],
             datasets: [{
-                label: "",
-                data: [10, 20, 30],
+                // data: [10, 20, 30],
+                data: [],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+            }
+        },
+    });
+    new Chart(document.getElementById("chartDoughnutAge"), {
+        type: "doughnut",
+        data: {
+            labels: ["Male", "Female", "None"],
+            datasets: [{
+                // data: [10, 20, 30],
+                data: [],
             }]
         },
         options: {
@@ -239,19 +238,23 @@
    new Chart(document.getElementById("chartLineGender"), {
         type: 'line',
         data: {
-            labels: ["2026-01", "2026-02", "2026-03", "2026-04","2026-05",],
+            // labels: ["2026-01", "2026-02", "2026-03", "2026-04","2026-05",],
+            labels: [],
             datasets: [
                 {
                     label: 'None',
-                    data: [10, 15, 20, 25, 30],
+                    // data: [10, 15, 20, 25, 30],
+                    data: [],
                 },
                 {
                     label: 'Male',
-                    data: [2, 4, 6, 8, 10],
+                    // data: [2, 4, 6, 8, 10],
+                    data: [],
                 },
                 {
                     label: 'Female',
-                    data: [3, 5, 7, 9, 11],
+                    // data: [3, 5, 7, 9, 11],
+                    data: [],
                 },
             ]
         },
@@ -268,34 +271,37 @@
     new Chart(document.getElementById("chartLineAge"), {
         type: 'line',
         data: {
-            labels: [
-                "2026-januari",
-                "2026-februari",
-                "2026-maret",
-                "2026-april",
-                "2026-mei",
-                "2026-juni",
-                "2026-juli",
-                "2026-agustus",
-                "2026-september",
-                "2026-oktober",
-                "2026-november",
-                "2026-desember",
-                "2026-desember2",
-                "2026-desember3",
-                "2026-desember4",
-                "2026-januari",
-                "2026-januari2",
-                "2026-januari3",
-            ],
+						labels:[],
+            // labels: [
+            //     "2026-januari",
+            //     "2026-februari",
+            //     "2026-maret",
+            //     "2026-april",
+            //     "2026-mei",
+            //     "2026-juni",
+            //     "2026-juli",
+            //     "2026-agustus",
+            //     "2026-september",
+            //     "2026-oktober",
+            //     "2026-november",
+            //     "2026-desember",
+            //     "2026-desember2",
+            //     "2026-desember3",
+            //     "2026-desember4",
+            //     "2026-januari",
+            //     "2026-januari2",
+            //     "2026-januari3",
+            // ],
             datasets: [
                 {
                     label: '< 18',
-                    data: [2, 4, 6, 2, 4, 6, 8, 10, 2, 4, 6, 8, 10, 12, 14, 2, 4, 6],
+                    // data: [2, 4, 6, 2, 4, 6, 8, 10, 2, 4, 6, 8, 10, 12, 14, 2, 4, 6],
+										data: [],
                 },
                 {
                     label: '>= 18',
-                    data: [2, 4, 6, 3, 5, 7, 9, 11, 3, 5, 7, 9, 11, 13, 15, 2, 4, 6],
+                    // data: [2, 4, 6, 3, 5, 7, 9, 11, 3, 5, 7, 9, 11, 13, 15, 2, 4, 6],
+										data: [],
                 },
             ]
         },
@@ -335,13 +341,14 @@
 					// }
 				},
     ],
-    data: [
-			["2026-12-31 09:59:59", "rhayeksa", "Administrator", "Male", 28],
-			["2026-12-31 09:59:58", "dewangga", "Administrator", "Female", 128],
-			["2026-12-31 09:59:57", "setiawan", "Administrator", "Male", 30],
-			["2026-12-31 09:59:56", "angga", "User", "Male", 28],
-			["2026-12-31 09:59:55", "Rhay", "User", "Male", 28],
-    ],
+		data: [],
+    // data: [
+		// 	["2026-12-31 09:59:59", "rhayeksa", "Administrator", "Male", 28],
+		// 	["2026-12-31 09:59:58", "dewangga", "Administrator", "Female", 128],
+		// 	["2026-12-31 09:59:57", "setiawan", "Administrator", "Male", 30],
+		// 	["2026-12-31 09:59:56", "angga", "User", "Male", 28],
+		// 	["2026-12-31 09:59:55", "Rhay", "User", "Male", 28],
+    // ],
     // pagination: {
     //     limit: 2,
     //     summary: false,
