@@ -28,7 +28,20 @@ page logs filter:
 - user_code
 
 page logs table:
-- log ID
-- timestamp
-- log
-  - {"menu": "users", "req": "get", "res": "OK", "data_sample": }
+timestamp
+username
+role
+url
+req method
+action
+IP
+
+Log logic:
+if press - [icon play] Preview then:
+munculkan list log latest 100 row order by timestamp desc
+
+if press - [icon csv] Export CSV then:
+munculkan msg alert success or error
+
+if press - [icon excel] Export Excel then:
+munculkan msg alert success or error

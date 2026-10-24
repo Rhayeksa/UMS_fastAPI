@@ -5,6 +5,20 @@
   rel="stylesheet"
   href="{{ url_for('static', path='/gridjs-6.2.0/dist/theme/mermaid.min.css') }}"
 />
+<style>
+  /* .gridjs-footer { */
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    /* flex-wrap: nowrap; */
+    /* overflow-x: scroll; */
+  /* } */
+  /* .gridjs-pagination { */
+    /* overflow-x: scroll; */
+    /* display: flex; */
+    /* align-items: center; */
+  /* } */
+</style>
 {% endblock %}
 
 {% block apps %}
@@ -26,44 +40,70 @@
         class="row g-3"
     >
         <div class="col-md-4">
-            <label for="date_from" class="form-label">From Date</label>
+            <label for="date_from" class="form-label">From Date<span class="text-danger ms-1">*</span></label>
             <input
                 type="date"
                 class="form-control"
                 id="date_from"
                 name="date_from"
-                value="2026-12-01"
+                required
             />
         </div>
         <div class="col-md-4">
-            <label for="date_to" class="form-label">To Date</label>
+            <label for="date_to" class="form-label">To Date<span class="text-danger ms-1">*</span></label>
             <input
                 type="date"
                 class="form-control"
                 id="date_to"
                 name="date_to"
-                value="2027-01-01"
+                required
             />
         </div>
         <div class="col-md-4 col-lg-3">
-            <label for="user_code" class="form-label">User Code</label>
+            <label for="username" class="form-label">Username</label>
             <input
                 type="text"
                 class="form-control"
                 id="date_to"
-                name="user_code"
+                name="username"
             />
         </div>
-        <button class="col mx-2 btn btn-primary fw-bold" type="submit">
-            <i class="fa-solid fa-play me-1"></i>Set
-        </button>
+        <div class="btn-group col">
+            <button
+                type="button"
+                class="btn btn-primary dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+                Action
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-eye me-2"></i>View Latest 100 Log Rows
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-file-csv me-2"></i>Export CSV
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-file-excel me-2"></i>Export Excel
+                    </a>
+                </li>
+            </ul>
+        </div>
     </form>
     <hr class="border border-primary border-1 opacity-25" />
+    <!-- <div class="row g-3" hidden> -->
     <div class="row g-3">
         <div class="col-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5 class="mb-3">Preview Logs Users 100 rows</h5>
+                    <h5 class="mb-3">Latest 100 Log Rows</h5>
                     <div id="wrapper"></div>
                 </div>
             </div>
@@ -83,19 +123,57 @@
 <script src="{{ url_for('static', path='/gridjs-6.2.0/dist/gridjs.umd.js') }}"></script>
 <script>
   new gridjs.Grid({
-    columns: ["Name", "Email", "Phone Number"],
-    data: [
-      ["John", "john@example.com", "(353) 01 222 3333"],
-      ["Mark", "mark@gmail.com", "(01) 22 888 4444"],
-      ["Eoin", "eoin@gmail.com", "0097 22 654 00033"],
-      ["Sarah", "sarahcdd@gmail.com", "+322 876 1233"],
-      ["Afshin", "afshin@mail.com", "(353) 22 87 8356"]
+    columns: [
+        "Timestamp",
+        {name: 'Username', width: '130px' },
+        // "Role",
+        "Url",
+        {name: 'Req Method', width: '150px' },
+        "Action",
+        "IP Address"
     ],
-    resizable: true,
-    sort: true,
+    data: [
+      ["2026-12-31 09:59:58", "rhayeksa", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:58", "angga", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:57", "dewangga", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list", "192.168.0.102"],
+      ["2026-12-31 09:59:56", "setiawan", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:55", "rhay", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:56", "setiawan", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:55", "rhay", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:56", "setiawan", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:55", "rhay", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:56", "setiawan", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:55", "rhay", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:56", "setiawan", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+      ["2026-12-31 09:59:55", "rhay", "http://localhost:8000/users", gridjs.html("<div class='text-center'>GET</div>"), "accessed the user list | filter: {'flt1': 'x'}", "192.168.0.102"],
+    ],
+    // fixedHeader: true,
+    // resizable: true,
     pagination: {
-      limit: 2
+        limit: 2,
+        summary: false,
+        buttonsCount: 1,
     },
+    style: {
+        table: {'white-space': 'nowrap'},
+        footer: {
+            'display': 'flex',
+            'flex-direction': 'row-reverse', // Membalik arah layout ke kanan
+            'overflow-x': 'auto',          // Mengaktifkan scroll horizontal jika layar sempit
+            'white-space': 'nowrap',       // Mencegah komponen terlipat ke bawah
+        },
+    },
+    // language: {
+    //     'search': {
+    //     'placeholder': '🔍 Search...'
+    //     },
+    //     'pagination': {
+    //     'previous': '<',
+    //     'next': '>',
+    //     'showing': '😃 Displaying',
+    //     'results': () => 'Records'
+    //     }
+    // }
   }).render(document.getElementById("wrapper"));
 </script>
 {% endblock %}
