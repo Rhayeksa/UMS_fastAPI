@@ -57,3 +57,10 @@ index fixing:
 - buat diagram baru age per month Female: legend => < 18 and >= 18 (pending)
 - buat diagram baru age per month None: legend => < 18 and >= 18 (pending)
 - implementasi table dengan gridjs
+
+---
+
+implementasi option log output.log
+
+---
+
