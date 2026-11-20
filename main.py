@@ -3,9 +3,8 @@ from fastapi.staticfiles import StaticFiles
 from slowapi.errors import RateLimitExceeded
 from starlette.middleware.cors import CORSMiddleware
 
-from src.api.routes import routes as routes_api
 from src.config import DIR_STATIC
-from src.controller.routes import routes as routes_controller
+from src.routers import routers
 from src.util.v1.exception_handlers import http_code_404, http_code_429, http_code_500
 from src.util.v1.rate_limiter import limiter
 
@@ -33,10 +32,8 @@ app.add_middleware(
 app.state.limiter = limiter  # slowapi
 
 # === Routes ===
-for route in routes_controller:
-    app.include_router(route)
-for route in routes_api:
-    app.include_router(route)
+for router in routers:
+    app.include_router(router)
 
 
 # === Error Handling ===

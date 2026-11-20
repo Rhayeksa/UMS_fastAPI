@@ -2,10 +2,10 @@ import json
 
 from fastapi import APIRouter
 
+from src.urls import api
 from src.util.v1.response import f as response
 
 router = APIRouter()
-
 res_200 = response(code=200, message="Welcome to API UMS")
 res_200 = json.loads(res_200.body)
 res_200 = {
@@ -13,7 +13,6 @@ res_200 = {
     "message": res_200["message"],
     "res": res_200,
 }
-
 res_500 = response(code=500)
 res_500 = json.loads(res_500.body)
 res_500 = {
@@ -23,7 +22,7 @@ res_500 = {
 
 
 @router.get(
-    path="/api",
+    path=f"{api}",
     name="Welcome API",
     summary="Welcome API",
     responses={
@@ -40,6 +39,6 @@ res_500 = {
 async def f():
     try:
         return response(code=200, message=res_200["message"])
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(f"\nError : {e}\n")
         return response(code=res_500["code"])
