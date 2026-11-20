@@ -1,8 +1,8 @@
 <nav class="navbar fixed-top bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-      <span class="me-1 fst-italic">{{ nav_title }}</span>
-      {{ nav_icon | safe }}
+      <span class="me-1 fst-italic">{{ navbar.title }}</span>
+      {{ navbar.icon | safe }}
     </a>
     <button
       class="navbar-toggler"
@@ -21,8 +21,8 @@
       aria-labelledby="offcanvasNavbarLabel"
     >
       <div class="offcanvas-header">
-        <span class="font-monospace me-1">Hi {{ usr_username }}</span>
-        {% if usr_is_administrator %}
+        <span class="font-monospace me-1">Hi {{ auth.username }}</span>
+        {% if auth.is_admin %}
             <i class="fa-solid fa-key"></i>
         {% endif %}
         <button
@@ -34,10 +34,10 @@
       </div>
       <div class="offcanvas-body">
         <div class="accordion accordion-flush" id="accordionFlushNavbar">
-          {% for i in nav_menu %}
+          {% for i in navbar.menus %}
             <div class="accordion-item">
               <h2 class="accordion-header">
-                {% if i["sub"] %}
+                {% if i.sub %}
                 <button
                   class="py-2 ps-1 accordion-button collapsed"
                   type="button"
@@ -46,15 +46,15 @@
                   aria-expanded="false"
                   aria-controls="flush-{{ loop.index0 }}"
                 >
-                  {{ i["icon"] | safe }}
-                  {{ i["text"] }}
+                  {{ i.icon | safe }}
+                  {{ i.text }}
                 </button>
                 {% else %}
                   <a
                     class="py-2 ps-1 accordion-button collapsed text-decoration-none fw-normal"
-                    href="{{ i['link'] }}"
+                    href="{{ i.link }}"
                     style="--bs-accordion-btn-icon: none; --bs-accordion-btn-active-icon: none;"
-                  > {{ i["icon"] | safe }} {{ i["text"] }}
+                  > {{ i.icon | safe }} {{ i.text }}
                   </a>
                 {% endif %}
               </h2>
@@ -67,9 +67,9 @@
                           <h2 class="accordion-header">
                             <a
                               class="py-2 ps-1 accordion-button collapsed text-decoration-none fw-normal"
-                              href="{{ j['link'] }}"
+                              href="{{ j.link }}"
                               style="--bs-accordion-btn-icon: none; --bs-accordion-btn-active-icon: none;"
-                            > {{ j["icon"] | safe }} {{ j["text"] }}
+                            > {{ j.icon | safe }} {{ j.text }}
                             </a>
                           </h2>
                         </div>

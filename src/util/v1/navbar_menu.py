@@ -21,8 +21,24 @@ async def f(token: str):
         },
         {
             "icon": "<i class='fa-solid fa-users me-2'></i>",
-            "text": "Users",
-            "link": "#",
+            "text": "User",
+            "sub": [
+                {
+                    "icon": "<i class='fa-solid fa-users me-2'></i>",
+                    "text": "Users",
+                    "link": "/user",
+                },
+                {
+                    "icon": "<i class='fa-solid fa-file-import me-2'></i>",
+                    "text": "Import",
+                    "link": "#",
+                },
+                {
+                    "icon": "<i class='fa-solid fa-file-export me-2'></i>",
+                    "text": "Export",
+                    "link": "#",
+                },
+            ],
         },
         {
             "icon": "<i class='fa-solid fa-screwdriver-wrench me-2'></i>",
