@@ -4,6 +4,7 @@ from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 
 from src.config import NAV_ICON, NAV_TITLE, templates
+from src.urls import v1_log
 from src.util.v1.exception_handlers import http_code_500
 from src.util.v1.navbar_menu import f as nav_menu
 from src.util.v1.rate_limiter import limiter
@@ -16,7 +17,7 @@ router = APIRouter()
 
 
 @router.get(
-    path="/logs",
+    path=v1_log,
     response_class=HTMLResponse,
     include_in_schema=False,
 )
@@ -33,11 +34,15 @@ async def f(request: Request):
             request=request,
             name="page/v1/log/index.html",
             context={
-                "nav_title": NAV_TITLE,
-                "nav_icon": NAV_ICON,
-                "nav_menu": await nav_menu(token="token"),
-                "usr_username": "Administrator",
-                "usr_is_administrator": True,
+                "navbar": {
+                    "title": NAV_TITLE,
+                    "icon": NAV_ICON,
+                    "menus": await nav_menu(token="token"),
+                },
+                "auth": {
+                    "username": "Administrator",
+                    "is_admin": True,
+                },
                 "top_100": [
                     {
                         "log_id": "6",

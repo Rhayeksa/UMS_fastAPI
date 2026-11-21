@@ -1,5 +1,14 @@
 import json
 
+from src.urls import (
+    v1_dashboard,
+    v1_log,
+    v1_logout,
+    v1_user,
+    v1_user_export,
+    v1_user_import,
+)
+
 # from src.v1.api.user.util.get_detail import f as get_detail
 from src.util.v1.verify_token import f as verify_token
 
@@ -17,7 +26,7 @@ async def f(token: str):
         {
             "icon": "<i class='fa-solid fa-chart-column me-2'></i>",
             "text": "Dashboard",
-            "link": "/",
+            "link": v1_dashboard,
         },
         {
             "icon": "<i class='fa-solid fa-users me-2'></i>",
@@ -26,34 +35,35 @@ async def f(token: str):
                 {
                     "icon": "<i class='fa-solid fa-users me-2'></i>",
                     "text": "Users",
-                    "link": "/user",
+                    "link": v1_user,
                 },
                 {
                     "icon": "<i class='fa-solid fa-file-import me-2'></i>",
                     "text": "Import",
-                    "link": "#",
+                    "link": v1_user_import,
                 },
                 {
                     "icon": "<i class='fa-solid fa-file-export me-2'></i>",
                     "text": "Export",
-                    "link": "#",
+                    "link": v1_user_export,
                 },
             ],
         },
         {
             "icon": "<i class='fa-solid fa-user-clock me-2'></i>",
-            "text": "Logs",
-            "link": "/logs",
+            "text": "Log",
+            "link": v1_log,
         },
         {
             "icon": "<i class='fa-solid fa-user me-2'></i>",
             "text": "My Profile",
-            # "link": f"/profile/{user['user_id']}",
+            # "link": f"{v1_user}/{user['user_id']}",
+            "link": f"{v1_user}/f47ac10b-58cc-4372-a567-0e02b2c3d479",
         },
         {
             "icon": "<i class='fa-solid fa-circle-xmark me-2'></i>",
             "text": "Logout",
-            "link": "/logout",
+            "link": v1_logout,
         },
     ]
     # if user["role"] == "player":
