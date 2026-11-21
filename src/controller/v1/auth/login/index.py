@@ -27,5 +27,5 @@ async def f(request: Request):
     #     return RedirectResponse(url="/")
 
     return templates.TemplateResponse(
-        request=request, name="page/v1/user/login.html", context={}
+        request=request, name="page/v1/auth/login.html", context={}
     )
