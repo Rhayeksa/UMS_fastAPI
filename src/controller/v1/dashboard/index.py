@@ -12,16 +12,19 @@ from src.util.v1.exception_handlers import http_code_500
 from src.util.v1.navbar_menu import f as nav_menu
 from src.util.v1.rate_limiter import limiter
 
+# from fastapi_timeout import timeout
+from src.util.v1.timeout import timeout  # <-- Ganti import ke file buatan sendiri
+
 router = APIRouter()
 
 
 @router.get(
     path=v1_dashboard,
-    # path="/",
     response_class=HTMLResponse,
     include_in_schema=False,
 )
 @limiter.limit("30/minute")  # limit di level API | second, minute, hour, day
+@timeout(5.0)
 async def f(request: Request):
     # token = request.cookies.get("x-access-token")
     # payload = verify_token(token=token)
@@ -30,10 +33,10 @@ async def f(request: Request):
     #     return RedirectResponse(url="/login")
 
     try:
+        # await asyncio.sleep(6)  # Simulasi proses berat selama 7 detik
         # Saat memanggil log, wajib mengirimkan dictionary 'extra' berisi variabel di atas
         # data_kustom = {"user_id": "Budi99", "ip_address": "192.168.1.5"}
         # logger.info("berhasil", extra=data_kustom)
-
         return templates.TemplateResponse(
             request=request,
             name="page/v1/index.html",

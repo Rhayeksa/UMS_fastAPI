@@ -1,3 +1,5 @@
+import asyncio
+
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from slowapi.errors import RateLimitExceeded
@@ -5,7 +7,12 @@ from starlette.middleware.cors import CORSMiddleware
 
 from src.config import DIR_STATIC
 from src.routers import routers
-from src.util.v1.exception_handlers import http_code_404, http_code_429, http_code_500
+from src.util.v1.exception_handlers import (
+    http_code_404,
+    http_code_429,
+    http_code_500,
+    http_code_504,
+)
 from src.util.v1.rate_limiter import limiter
 
 # === CONFIG ===
@@ -40,3 +47,4 @@ for router in routers:
 app.add_exception_handler(RateLimitExceeded, http_code_429)
 app.add_exception_handler(404, http_code_404)
 app.add_exception_handler(500, http_code_500)
+app.add_exception_handler(504, http_code_504)
