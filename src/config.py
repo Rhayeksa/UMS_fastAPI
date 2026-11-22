@@ -12,13 +12,13 @@ load_dotenv(dotenv_path="./.env")
 
 # Konfigurasi untuk mencatat SEMUA aktivitas
 # if False:
-logging.basicConfig(
-    filename="aplikasi_all.log",  # Nama file (bisa .txt atau .log)
-    filemode="a",  # 'a' berarti log baru akan ditambahkan di bawah log lama
-    level=logging.INFO,  # Mengizinkan level INFO, WARNING, ERROR, & CRITICAL masuk ke file
-    format="%(asctime)s | %(levelname)-8s | User: %(user_id)s | IP: %(ip_address)s | X: %(x)s | %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",  # Format waktu agar lebih rapi
-)
+# logging.basicConfig(
+#     filename="aplikasi_all.log",  # Nama file (bisa .txt atau .log)
+#     filemode="a",  # 'a' berarti log baru akan ditambahkan di bawah log lama
+#     level=logging.INFO,  # Mengizinkan level INFO, WARNING, ERROR, & CRITICAL masuk ke file
+#     format="%(asctime)s | %(levelname)-8s | User: %(user_id)s | IP: %(ip_address)s | X: %(x)s | %(message)s",
+#     datefmt="%Y-%m-%d %H:%M:%S",  # Format waktu agar lebih rapi
+# )
 logger = logging.getLogger(__name__)
 
 # Web
