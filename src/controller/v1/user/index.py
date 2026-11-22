@@ -1,14 +1,15 @@
+import uuid
+
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 
-from src.config import NAV_ICON, NAV_TITLE, logger, templates
-from src.urls import v1_user
+from src.config import NAV_ICON, NAV_TITLE, templates
+from src.urls import v1_user, v1_user_add
 from src.util.v1.exception_handlers import http_code_500
 from src.util.v1.navbar_menu import f as nav_menu
 from src.util.v1.rate_limiter import limiter
 
 router = APIRouter()
-
 
 @router.get(
     path=v1_user,
@@ -23,6 +24,18 @@ async def f(request: Request):
     # if not token or isinstance(payload, str):
     #     return RedirectResponse(url="/login")
     try:
+        data = []
+        for i in range(20):
+            id = uuid.uuid7()
+            data.append(
+                {
+                    "username": f"Username {i + 1}",
+                    "user_id": id,
+                    "age": 18 + i,
+                    "gender": "Pria",
+                    "role": "Administrator",
+                }
+            )
         return templates.TemplateResponse(
             request=request,
             name="page/v1/user/index.html",
@@ -36,7 +49,15 @@ async def f(request: Request):
                     "username": "Administrator",
                     "is_admin": True,
                 },
-                "data": [{}, {}],
+                "breadcrumb": [
+                    {"icon": "<i class='fa-solid fa-users me-2'></i>", "text": "user"},
+                    {"icon": "<i class='fa-solid fa-users me-2'></i>", "text": "users"},
+                ],
+                "link": {
+                    "add": v1_user_add,
+                },
+                "data": data,
+                # "data": [],
             },
         )
     except Exception as e:  # noqa: BLE001

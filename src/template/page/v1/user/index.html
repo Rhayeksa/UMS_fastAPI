@@ -5,157 +5,122 @@
     rel="stylesheet" 
     href="{{ url_for('static', path='/use-bootstrap-select-2.2.1/dist/use-bootstrap-select.min.css') }}"
 >
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', path='/gridjs-6.2.0/dist/theme/mermaid.min.css') }}"
-/>
 {% endblock %}
 
 {% block apps %}
 {% include "components/v1/navbar.html"%}
-<div class="container pt-4" style="padding-bottom: 100px;">
-    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">user</a></li>
-      </ol>
-    </nav>
-    <form
-        id="form-dashboard-filter"
-        hx-post="/"
-        hx-encoding="json"
-        hx-ext="json-enc"
-        hx-swap="none"
-        hx-on::after-request="handleFormAfter(event)"
-        hx-on::before-request="handleFormBefore(event)"
-        class="row g-3"
-    >
-        <div class="col-md-6">
-            <label for="date_from" class="form-label">From Date<span class="text-danger ms-1">*</span></label>
-            <input
-                type="date"
-                class="form-control"
-                id="date_from"
-                name="date_from"
-                required
-            />
-        </div>
-        <div class="col-md-6">
-            <label for="date_to" class="form-label">To Date<span class="text-danger ms-1">*</span></label>
-            <input
-                type="date"
-                class="form-control"
-                id="date_to"
-                name="date_to"
-                required
-            />
-        </div>
-        <div class="col-md-6 col-lg-3">
-            <label for="Role" class="form-label">Role</label>
-            <select
-                id="Role"
-                class="form-select"
-                aria-label="Role select"
-                name="role"
-            >
-                <option selected>All</option>
-                <option value="2">Administrator</option>
-                <option value="3">User</option>
-            </select>
-        </div>
-        <div class="col-md-12 col-lg-4">
-            <label for="gender" class="form-label">Gender<span class="text-danger ms-1">*</span></label>
-            <select
-                id="gender"
-                name="gender[]"
-                class="form-select"
-                aria-label="Gender select"
-                data-searchable="true"
-                data-creatable-text="Add &lt;b&gt;{value}&lt;/b&gt;..."
-								required
-                multiple
-            >
-                <option value="none">None</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-        </div>
-        <div class="col-md-6 col-lg-3">
-            <label for="age" class="form-label">Age</label>
-            <select
-                id="age"
-                class="form-select"
-                aria-label="Age select"
-                name="age"
-            >
-                <option selected>All</option>
-                <option value="2">&lt; 18</option>
-                <option value="3">&gt;= 18</option>
-            </select>
-        </div>
-        <button class="col mx-2 btn btn-primary fw-bold" type="submit">
-            <i class="fa-solid fa-play me-1"></i>Set
-        </button>
-    </form>
-    <hr class="border border-primary border-1 opacity-25" />
+<div class="container-fluid pt-4" style="padding-bottom: 100px;">
+    {% include "components/v1/breadcrumb.html"%}
     <div class="row g-3">
-        <div class="col-lg-4">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="mb-3">Role</h5>
-                    <canvas id="chartDoughnutRole"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="mb-3">Gender</h5>
-                    <canvas id="chartDoughnutGender"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="mb-3">Age</h5>
-                    <canvas id="chartDoughnutAge"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="mb-3">Gender Per Month</h5>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <div style="min-width: 850px;">
-					                    <canvas id="chartLineGender"></canvas>
-														</div>
-												</table>
-										</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="mb-3">Age Per Month</h5>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <div style="min-width: 850px;">
-                                <canvas id="chartLineAge"></canvas>
-                            </div>
-                        </table>
+        <div class="col-lg-2">
+            <a href="{{ link.add }}" class="btn btn-primary col-12"><i class="fa-solid fa-user-plus me-2"></i>Add New User</a>
+            <div class="accordion shadow-sm mt-3" id="accordionFilter">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button
+                            class="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseFilter"
+                            aria-expanded="true"
+                            aria-controls="collapseFilter"
+                        >Filter
+                        </button>
+                    </h2>
+                    <div
+                        id="collapseFilter"
+                        class="accordion-collapse collapse show"
+                        data-bs-parent="#accordionFilter"
+                    >
+                        <div class="accordion-body">
+                            <form
+                                id="form-dashboard-filter"
+                                hx-post="/"
+                                hx-encoding="json"
+                                hx-ext="json-enc"
+                                hx-swap="none"
+                                hx-on::after-request="handleFormAfter(event)"
+                                hx-on::before-request="handleFormBefore(event)"
+                                class="row g-3"
+                            >
+                                <div class="col-12">
+                                    <label for="Role" class="form-label">Username</label>
+                                    <input
+                                        id="username"
+                                        name="username"
+                                        type="text"
+                                        class="form-control"
+                                    />
+                                </div>
+                                <div class="col-12">
+                                    <label for="Role" class="form-label">Role</label>
+                                    <select
+                                        id="Role"
+                                        class="form-select"
+                                        aria-label="Role select"
+                                        name="role"
+                                    >
+                                        <option selected>All</option>
+                                        <option value="2">Administrator</option>
+                                        <option value="3">User</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select
+                                        id="gender"
+                                        name="gender[]"
+                                        class="form-select"
+                                        aria-label="Gender select"
+                                        data-searchable="true"
+                                        data-creatable-text="Add &lt;b&gt;{value}&lt;/b&gt;..."
+                                        multiple
+                                    >
+                                        <option value="none">None</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="age" class="form-label">Age</label>
+                                    <select
+                                        id="age"
+                                        class="form-select"
+                                        aria-label="Age select"
+                                        name="age"
+                                    >
+                                        <option selected>All</option>
+                                        <option value="2">&lt; 18</option>
+                                        <option value="3">&gt;= 18</option>
+                                    </select>
+                                </div>
+                                <button class="col mx-2 btn btn-primary fw-bold" type="submit">
+                                    <i class="fa-solid fa-magnifying-glass me-2"></i>Search
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="mb-3">Latest 5 User Row</h5>
-                    <div id="table-users"></div>
+        <div class="col">
+            <div class="row g-3">
+                {% for i in data %}
+                <div class="col-lg-2 col-md-4">
+                    <div class="card">
+                        <div class="card-img-top bg-light" style="min-height: 150px;"></div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ i.username }}</h5>
+                            <div><i class="fa-regular fa-calendar me-1"></i><b>Age:</b> {{ i.age }}</div>
+                            <div><i class="fa-solid fa-venus-mars me-1"></i><b>Gender:</b> {{ i.gender }}</div>
+                            <div><i class="fa-solid fa-key me-1"></i><b>Role:</b> {{ i.role }}</div>
+                        </div>
+                        <div class="card-footer text-body-secondary text-end">
+                            <a href="/user/{{ i.user_id }}" class="btn btn-primary"><i class="fa-regular fa-folder-open me-2"></i>Detail</a>
+                        </div>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
