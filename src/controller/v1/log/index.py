@@ -30,6 +30,16 @@ async def f(request: Request):
     #     return RedirectResponse(url="/login")
 
     try:
+        data = []
+        for i in range(50):
+            data.append(
+                {
+                    "log_id": i,
+                    "timestamp": "2026-12-31 15:30:59",
+                    "username": f"Username {i + 1}",
+                    "log": "{'menu': 'users', 'req': 'get'}",
+                },
+            )
         return templates.TemplateResponse(
             request=request,
             name="page/v1/log/index.html",
@@ -43,44 +53,10 @@ async def f(request: Request):
                     "username": "Administrator",
                     "is_admin": True,
                 },
-                "top_100": [
-                    {
-                        "log_id": "6",
-                        "timestamp": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "log": "{'menu': 'users', 'req': 'get'}",
-                    },
-                    {
-                        "log_id": "5",
-                        "timestamp": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "log": "{'menu': 'users', 'req': 'get'}",
-                    },
-                    {
-                        "log_id": "4",
-                        "timestamp": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "log": "{'menu': 'users', 'req': 'get'}",
-                    },
-                    {
-                        "log_id": "3",
-                        "timestamp": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "log": "{'menu': 'users', 'req': 'get'}",
-                    },
-                    {
-                        "log_id": "2",
-                        "timestamp": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "log": "{'menu': 'users', 'req': 'get'}",
-                    },
-                    {
-                        "log_id": "1",
-                        "timestamp": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "log": "{'menu': 'users', 'req': 'get'}",
-                    },
+                "breadcrumb": [
+                    {"icon": "<i class='fa-solid fa-user-clock me-2'></i>", "text": "Log"},
                 ],
+                "top_100": data,
             },
         )
     except Exception as e:  # noqa: BLE001

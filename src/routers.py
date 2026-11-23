@@ -3,6 +3,7 @@ from src.api.v1.favicon import router as v1_favicon
 from src.api.v1.welcome_api import router as v1_welcome_api
 from src.controller.v1.auth.login.index import router as v1_login
 from src.controller.v1.auth.login.submit import router as v1_login_submit
+from src.controller.v1.auth.logout import router as v1_logout
 from src.controller.v1.auth.register.index import router as v1_register
 
 # from src.controller.v1.auth.register.submit import router as v1_register_submit
@@ -34,6 +35,7 @@ routers = [
     v1_log,
     v1_login,
     v1_login_submit,
+    v1_logout,
     v1_register,
     # v1_register_submit,
     v1_user,

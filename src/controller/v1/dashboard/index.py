@@ -37,6 +37,17 @@ async def f(request: Request):
         # Saat memanggil log, wajib mengirimkan dictionary 'extra' berisi variabel di atas
         # data_kustom = {"user_id": "Budi99", "ip_address": "192.168.1.5"}
         # logger.info("berhasil", extra=data_kustom)
+        data = []
+        for i in range(10):
+            data.append(
+                {
+                    "created_at": "2026-12-31 15:30:59",
+                    "username": f"Username {i + 1}",
+                    "age": 18 + i,
+                    "gender": "Pria",
+                    "role": "Administrator",
+                }
+            )
         return templates.TemplateResponse(
             request=request,
             name="page/v1/index.html",
@@ -50,43 +61,13 @@ async def f(request: Request):
                     "username": "Administrator",
                     "is_admin": True,
                 },
-                "top_10_new_usr": [
+                "breadcrumb": [
                     {
-                        "created_at": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "role": "Administrator",
-                        "gender": "Male",
-                        "age": "28",
-                    },
-                    {
-                        "created_at": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "role": "Administrator",
-                        "gender": "Male",
-                        "age": "28",
-                    },
-                    {
-                        "created_at": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "role": "Administrator",
-                        "gender": "Male",
-                        "age": "28",
-                    },
-                    {
-                        "created_at": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "role": "Administrator",
-                        "gender": "Male",
-                        "age": "28",
-                    },
-                    {
-                        "created_at": "2026-12-31 15:30:59",
-                        "username": "Rhayeksa",
-                        "role": "Administrator",
-                        "gender": "Male",
-                        "age": "28",
+                        "icon": "<i class='fa-solid fa-chart-column me-2'></i>",
+                        "text": "Dashboard",
                     },
                 ],
+                "top_10_new_usr": data,
             },
         )
     except Exception as e:  # noqa: BLE001

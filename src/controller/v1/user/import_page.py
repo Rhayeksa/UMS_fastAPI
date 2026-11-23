@@ -38,7 +38,6 @@ async def f(request: Request):
                 },
                 "breadcrumb": [
                     {"icon": "<i class='fa-solid fa-users me-2'></i>", "text": "User"},
-                    {"icon": "<i class='fa-solid fa-users me-2'></i>", "text": "Users"},
                     {"icon": "<i class='fa-solid fa-file-import me-1'></i>", "text": "Import"},
                 ],
                 # "data": data,

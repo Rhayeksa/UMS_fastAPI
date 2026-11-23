@@ -50,8 +50,8 @@ async def f(request: Request):
                     "is_admin": True,
                 },
                 "breadcrumb": [
-                    {"icon": "<i class='fa-solid fa-users me-2'></i>", "text": "user"},
-                    {"icon": "<i class='fa-solid fa-users me-2'></i>", "text": "users"},
+                    {"icon": "<i class='fa-solid fa-users me-2'></i>", "text": "User"},
+                    {"icon": "<i class='fa-solid fa-users me-2'></i>", "text": "Users"},
                 ],
                 "link": {
                     "add": v1_user_add,
