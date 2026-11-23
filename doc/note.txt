@@ -64,3 +64,6 @@ implementasi option log output.log
 
 ---
 
+todo: (23 Nov 26)
+- fixed UI: dashboard dan log page
+- migrate grid.js ke datatable.js
