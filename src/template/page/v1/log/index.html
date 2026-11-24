@@ -11,82 +11,110 @@
 {% include "components/v1/navbar.html"%}
 <div class="container-fluid pt-4" style="padding-bottom: 100px;">
     {% include "components/v1/breadcrumb.html" %}    
-    <form
-        id="form-dashboard-filter"
-        hx-post="/"
-        hx-encoding="json"
-        hx-ext="json-enc"
-        hx-swap="none"
-        hx-on::after-request="handleFormAfter(event)"
-        hx-on::before-request="handleFormBefore(event)"
-        class="row g-3"
-    >
-        <div class="col-md-4">
-            <label for="date_from" class="form-label">From Date<span class="text-danger ms-1">*</span></label>
-            <input
-                type="date"
-                class="form-control"
-                id="date_from"
-                name="date_from"
-                required
-            />
-        </div>
-        <div class="col-md-4">
-            <label for="date_to" class="form-label">To Date<span class="text-danger ms-1">*</span></label>
-            <input
-                type="date"
-                class="form-control"
-                id="date_to"
-                name="date_to"
-                required
-            />
-        </div>
-        <div class="col-md-4 col-lg-3">
-            <label for="username" class="form-label">Username</label>
-            <input
-                type="text"
-                class="form-control"
-                id="date_to"
-                name="username"
-            />
-        </div>
-        <div class="btn-group col">
-            <button
-                type="button"
-                class="btn btn-primary dropdown-toggle"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-            >
-                Action
-            </button>
-            <ul class="dropdown-menu">
-                <li>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa-solid fa-eye me-2"></i>View Latest 100 Log Rows
-                    </a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa-solid fa-file-csv me-2"></i>Export CSV
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa-solid fa-file-excel me-2"></i>Export Excel
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </form>
-    <hr class="border border-primary border-1 opacity-25" />
-    <!-- <div class="row g-3" hidden> -->
     <div class="row g-3">
-        <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="mb-3">Latest 100 Log Rows</h5>
-                    <div id="table-logs"></div>
+        <div class="col-xl-3 col-lg-12">
+            <div class="accordion shadow-sm" id="accordionFilter">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button
+                            class="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseFilter"
+                            aria-expanded="true"
+                            aria-controls="collapseFilter"
+                        >Filter
+                        </button>
+                    </h2>
+                    <div
+                        id="collapseFilter"
+                        class="accordion-collapse collapse show"
+                        data-bs-parent="#accordionFilter"
+                    >
+                        <div class="accordion-body">
+                            <form
+                                id="form-dashboard-filter"
+                                hx-post="/"
+                                hx-encoding="json"
+                                hx-ext="json-enc"
+                                hx-swap="none"
+                                hx-on::after-request="handleFormAfter(event)"
+                                hx-on::before-request="handleFormBefore(event)"
+                                class="row g-3"
+                            >
+                                <div class="col-12">
+                                    <label for="date_from" class="form-label">From Date<span class="text-danger ms-1">*</span></label>
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="date_from"
+                                        name="date_from"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-12">
+                                    <label for="date_to" class="form-label">To Date<span class="text-danger ms-1">*</span></label>
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="date_to"
+                                        name="date_to"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-12">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input
+                                        id="username"
+                                        name="username"
+                                        type="text"
+                                        class="form-control"
+                                    />
+                                </div>
+                                <div class="btn-group col">
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary dropdown-toggle fw-bold"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        Action
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fa-solid fa-eye me-2"></i>View Latest 100 Log Rows
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fa-solid fa-file-csv me-2"></i>Export CSV
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fa-solid fa-file-excel me-2"></i>Export Excel
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <!-- <div class="row g-3" hidden> -->
+            <div class="row g-3">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="mb-3">Latest 100 Log Rows</h5>
+                            <div id="table-logs"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

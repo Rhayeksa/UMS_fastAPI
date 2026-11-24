@@ -5,6 +5,7 @@ from src.urls import (
     v1_log,
     v1_logout,
     v1_user,
+    v1_user_add,
     v1_user_export,
     v1_user_import,
 )
@@ -36,6 +37,11 @@ async def f(token: str):
                     "icon": "<i class='fa-solid fa-users me-2'></i>",
                     "text": "Users",
                     "link": v1_user,
+                },
+                {
+                    "icon": "<i class='fa-solid fa-user-plus me-2'></i>",
+                    "text": "Add",
+                    "link": v1_user_add,
                 },
                 {
                     "icon": "<i class='fa-solid fa-file-import me-2'></i>",
